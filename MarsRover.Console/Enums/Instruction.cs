@@ -1,7 +1,7 @@
 ﻿namespace MarsRover.App.Enums
 {
     using System;
-        enum Instruction
+        public enum Instruction
         {
             L, // Turn Left
             R, // Turn Right
