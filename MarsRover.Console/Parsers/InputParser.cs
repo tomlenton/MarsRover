@@ -11,6 +11,9 @@ namespace MarsRover.App.Parsers
     {
         public List<Instruction> InputParse(string instructions)
         {
+            if (string.IsNullOrEmpty(instructions))
+                return new List<Instruction>();
+
             return new List<Instruction> { Instruction.L };
         }
 
