@@ -54,5 +54,24 @@ namespace MarsRover.App.RoverMovementLogic
                 position.Facing = CompassDirection.N;
             }
         }
+        public void Move()
+        {
+            if (position.Facing == CompassDirection.N)
+            {
+                position.Y++;
+            }
+            else if (position.Facing == CompassDirection.E)
+            {
+                position.X++;
+            }
+            else if (position.Facing == CompassDirection.S)
+            {
+                position.Y--;
+            }
+            else if (position.Facing == CompassDirection.W)
+            {
+                position.X--;
+            }
+        }
     }
 }

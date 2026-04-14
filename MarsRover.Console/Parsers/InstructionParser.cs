@@ -7,7 +7,7 @@ using MarsRover.App.RoverMovement;
 
 namespace MarsRover.App.Parsers
 {
-    public class InputParser
+    public class InstructionParser
     {
         public List<Instruction> InputParse(string instructions)
         {

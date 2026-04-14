@@ -18,7 +18,7 @@
 
             var plateauParser = new PlateauParser();
             var positionParser = new PositionParser();
-            var instructionParser = new InputParser();
+            var instructionParser = new InstructionParser();
 
 
             var plateau = plateauParser.PlateauParse(plateauInput);

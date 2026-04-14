@@ -18,7 +18,7 @@ namespace MarsRover.Tests
             [Test]
             public void InputParse_SingleInstruction_ReturnsSingleItemList()
             {
-                var parser = new InputParser();
+                var parser = new InstructionParser();
 
                 var result = parser.InputParse("L");
 
@@ -27,7 +27,7 @@ namespace MarsRover.Tests
             [Test]
             public void InsputParse_EmptyString_ReturnsEmptyList()
             {
-                var parser = new InputParser();
+                var parser = new InstructionParser();
 
                 var result = parser.InputParse("");
 
@@ -36,7 +36,7 @@ namespace MarsRover.Tests
             [Test]
             public void InputParse_MultipleInstructions_ReturnsMultipleEnums()
             {
-                var parser = new InputParser();
+                var parser = new InstructionParser();
 
                 var result = parser.InputParse("LRM");
 
@@ -48,7 +48,7 @@ namespace MarsRover.Tests
             [Test]
             public void InputParse_WorksWithLowercaseLMR_ReturnsLM()
             {
-                var parser = new InputParser();
+                var parser = new InstructionParser();
 
                 var result = parser.InputParse("lm");
 
@@ -59,7 +59,7 @@ namespace MarsRover.Tests
             [Test]
             public void InputParse_IgnoreInvalidCharacters_ReturnsOnlyLRM()
             {
-                var parser = new InputParser();
+                var parser = new InstructionParser();
 
                 var result = parser.InputParse("LARSMP");
 
@@ -68,7 +68,7 @@ namespace MarsRover.Tests
             [Test]
             public void InputParse_IgnoreWhitespace_ReturnsOnlyLRM()
             {
-                var parser = new InputParser();
+                var parser = new InstructionParser();
 
                 var result = parser.InputParse(" L R M ");
 
@@ -80,7 +80,7 @@ namespace MarsRover.Tests
             [Test]
             public void InputParse_IgnoresCharacters_ReturnsOnlyLRM()
             {
-                var parser = new InputParser();
+                var parser = new InstructionParser();
 
                 var result = parser.InputParse(" L R M!");
 

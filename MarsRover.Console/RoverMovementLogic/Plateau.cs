@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MarsRover.App.RoverMovementLogic
 {
-    internal class Plateau
+    public class Plateau
     {
+
     }
 }
