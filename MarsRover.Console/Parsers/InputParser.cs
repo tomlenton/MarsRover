@@ -12,9 +12,22 @@ namespace MarsRover.App.Parsers
         public List<Instruction> InputParse(string instructions)
         {
             if (string.IsNullOrEmpty(instructions))
+            {
                 return new List<Instruction>();
+            }
 
-            return new List<Instruction> { Instruction.L };
+            var result = new List<Instruction>();
+
+            foreach (char c in instructions)
+            {
+                char cUpper = char.ToUpper(c);
+                if (Enum.TryParse(cUpper.ToString(), out Instruction instruction))
+                {
+                    result.Add(instruction);
+                }
+            }
+
+            return result;
         }
 
     }
