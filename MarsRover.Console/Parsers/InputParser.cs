@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MarsRover.App.Enums;
+using MarsRover.App.RoverMovement;
 
 namespace MarsRover.App.Parsers
 {

@@ -1,5 +1,5 @@
 ﻿using MarsRover.App.Data;
-using MarsRover.App.Enums;
+using MarsRover.App.RoverMovement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +12,11 @@ namespace MarsRover.App.Parsers
     {
         public Position PositionParse(string position)
         {
+            if (string.IsNullOrWhiteSpace(position))
+            {
+                throw new ArgumentException("Invalid input, please provide a correct position");
+            }
             var parts = position.Split(" ");
-
             if (parts.Length != 3)
             {
                 throw new Exception("Invalid position format");

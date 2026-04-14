@@ -1,4 +1,4 @@
-﻿using MarsRover.App.Enums;
+﻿using MarsRover.App.RoverMovement;
 
 namespace MarsRover.App.Data
 {

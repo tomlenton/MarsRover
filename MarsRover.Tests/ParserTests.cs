@@ -1,8 +1,9 @@
 namespace MarsRover.Tests
 {
-using MarsRover.App.Enums;
     using MarsRover.App.Parsers;
-public class Tests
+    using MarsRover.App.RoverMovement;
+
+    public class Tests
     {
         public class HelloWorldTests
         {
@@ -180,6 +181,78 @@ public class Tests
                 var result = parser.PositionParse("1 2 n");
 
                 Assert.That(result.Facing, Is.EqualTo(CompassDirection.N));
+            }
+        }
+        public class PlateauParserTests
+        {
+            [Test]
+            public void PlateauParse_ValidInput_ReturnsCorrectSize()
+            {
+                var parser = new PlateauParser();
+
+                var result = parser.PlateauParse("5 5");
+
+                Assert.That(result.MaxX, Is.EqualTo(5));
+                Assert.That(result.MaxY, Is.EqualTo(5));
+            }
+
+            [Test]
+            public void PlateauParse_DifferentValues_ReturnsCorrectSize()
+            {
+                var parser = new PlateauParser();
+
+                var result = parser.PlateauParse("10 20");
+
+                Assert.That(result.MaxX, Is.EqualTo(10));
+                Assert.That(result.MaxY, Is.EqualTo(20));
+            }
+
+            [Test]
+            public void PlateauParse_EmptyInput_ThrowsException()
+            {
+                var parser = new PlateauParser();
+
+                Assert.Throws<ArgumentException>(() => parser.PlateauParse(""));
+            }
+
+            [Test]
+            public void PlateauParse_NullInput_ThrowsException()
+            {
+                var parser = new PlateauParser();
+
+                Assert.Throws<ArgumentException>(() => parser.PlateauParse(null));
+            }
+
+            [Test]
+            public void PlateauParse_MissingValue_ThrowsException()
+            {
+                var parser = new PlateauParser();
+
+                Assert.Throws<ArgumentException>(() => parser.PlateauParse("5"));
+            }
+
+            [Test]
+            public void PlateauParse_TooManyValues_ThrowsException()
+            {
+                var parser = new PlateauParser();
+
+                Assert.Throws<ArgumentException>(() => parser.PlateauParse("5 5 5"));
+            }
+
+            [Test]
+            public void PlateauParse_InvalidX_ThrowsException()
+            {
+                var parser = new PlateauParser();
+
+                Assert.Throws<ArgumentException>(() => parser.PlateauParse("X 5"));
+            }
+
+            [Test]
+            public void PlateauParse_InvalidY_ThrowsException()
+            {
+                var parser = new PlateauParser();
+
+                Assert.Throws<ArgumentException>(() => parser.PlateauParse("5 Y"));
             }
         }
     }

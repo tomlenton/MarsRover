@@ -1,4 +1,4 @@
-﻿namespace MarsRover.App.Enums
+﻿namespace MarsRover.App.RoverMovement
 {
     public enum CompassDirection
     {

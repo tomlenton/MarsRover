@@ -1,4 +1,4 @@
-﻿namespace MarsRover.App.Enums
+﻿namespace MarsRover.App.RoverMovement
 {
     using System;
         public enum Instruction
