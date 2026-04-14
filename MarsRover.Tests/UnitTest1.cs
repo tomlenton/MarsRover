@@ -12,7 +12,7 @@ public class Tests
                 Assert.That(true, Is.True);
             }
         }
-        public class ParserTests
+        public class InputParserTests
         {
             [Test]
             public void InputParse_SingleInstruction_ReturnsSingleItemList()
@@ -75,6 +75,111 @@ public class Tests
                 Assert.AreEqual(Instruction.L, result[0]);
                 Assert.AreEqual(Instruction.R, result[1]);
                 Assert.AreEqual(Instruction.M, result[2]);
+            }
+            [Test]
+            public void InputParse_IgnoresCharacters_ReturnsOnlyLRM()
+            {
+                var parser = new InputParser();
+
+                var result = parser.InputParse(" L R M!");
+
+                Assert.AreEqual(3, result.Count);
+                Assert.AreEqual(Instruction.L, result[0]);
+                Assert.AreEqual(Instruction.R, result[1]);
+                Assert.AreEqual(Instruction.M, result[2]);
+            }
+        }
+        public class PoitionParserTests
+        {
+            [Test]
+            public void PositionParse_Withx1y1_Returns1x1yHardcodedFacingN()
+            {
+                var parser = new PositionParser();
+                var result = parser.PositionParse("1 1 N");
+                Assert.That(result.X, Is.EqualTo(1));
+                Assert.That(result.Y, Is.EqualTo(1));
+                Assert.That(result.Facing, Is.EqualTo(CompassDirection.N));
+            }
+
+            [Test]
+            public void PositionParse_WuithAnyDirection_ReturnsCorrectFacingDirection()
+            {
+                var parser = new PositionParser();
+                var result = parser.PositionParse("1 1 E");
+                Assert.That(result.X, Is.EqualTo(1));
+                Assert.That(result.Y, Is.EqualTo(1));
+                Assert.That(result.Facing, Is.EqualTo(CompassDirection.E));
+            }
+
+            [Test]
+            public void PositionParse_WithDifferentCoordinates_ReturnsCorrectValues()
+            {
+                var parser = new PositionParser();
+
+                var result = parser.PositionParse("3 5 N");
+
+                Assert.That(result.X, Is.EqualTo(3));
+                Assert.That(result.Y, Is.EqualTo(5));
+            }
+
+            [Test]
+            public void PositionParse_WithZeroCoordinates_ReturnsZeroValues()
+            {
+                var parser = new PositionParser();
+
+                var result = parser.PositionParse("0 0 S");
+
+                Assert.That(result.X, Is.EqualTo(0));
+                Assert.That(result.Y, Is.EqualTo(0));
+            }
+
+            [Test]
+            public void PositionParse_InvalidX_ThrowsException()
+            {
+                var parser = new PositionParser();
+
+                Assert.Throws<Exception>(() => parser.PositionParse("X 1 N"));
+            }
+
+            [Test]
+            public void PositionParse_InvalidY_ThrowsException()
+            {
+                var parser = new PositionParser();
+
+                Assert.Throws<Exception>(() => parser.PositionParse("1 Y N"));
+            }
+
+            [Test]
+            public void PositionParse_InvalidDirection_ThrowsException()
+            {
+                var parser = new PositionParser();
+
+                Assert.Throws<Exception>(() => parser.PositionParse("1 1 Z"));
+            }
+
+            [Test]
+            public void PositionParse_MissingDirection_ThrowsException()
+            {
+                var parser = new PositionParser();
+
+                Assert.Throws<Exception>(() => parser.PositionParse("1 1"));
+            }
+
+            [Test]
+            public void PositionParse_TooManyValues_ThrowsException()
+            {
+                var parser = new PositionParser();
+
+                Assert.Throws<Exception>(() => parser.PositionParse("1 2 N EXTRA"));
+            }
+            [Test]
+            public void PositionParse_LowercaseDirection_ReturnsCorrectDirection()
+            {
+                var parser = new PositionParser();
+
+                var result = parser.PositionParse("1 2 n");
+
+                Assert.That(result.Facing, Is.EqualTo(CompassDirection.N));
             }
         }
     }

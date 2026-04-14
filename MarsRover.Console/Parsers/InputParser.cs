@@ -26,9 +26,7 @@ namespace MarsRover.App.Parsers
                     result.Add(instruction);
                 }
             }
-
             return result;
         }
-
     }
 }
